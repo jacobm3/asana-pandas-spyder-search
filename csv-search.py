@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import pandas as pd
 
 
@@ -12,8 +14,12 @@ search_str = 'azure'
 df= df[ df['Feature Request Title'].str.contains(search_str,case=False) | \
         df['What Currently Happens'].str.contains(search_str,case=False) | \
         df['What is Desired'].str.contains(search_str,case=False) ]
+
+
     
 df = df[ ['Feature Request Title', 'What Currently Happens','What is Desired', 
           'Asana Task ID','Asana Sub Task ID']]
+
+df['Asana Link'] = "https://app.asana.com/0/112957393038545/" + df['Asana Task ID'] 
 
 df.to_excel('fr-search-output.xlsx', index=None, header=True)
